@@ -38,7 +38,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         return employeeServiceImpl.getMap().values()
                 .stream()
                 .filter(employee -> employee.getDepartment() == dep)
-                .min(Comparator.comparingDouble(employeeServiceImpl-> employeeServiceImpl.getSalary()))
+                .min(Comparator.naturalOrder())
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
