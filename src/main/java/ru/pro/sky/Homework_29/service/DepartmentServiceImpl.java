@@ -25,29 +25,23 @@ public class DepartmentServiceImpl implements DepartmentService {
                 .collect(Collectors.toList());
     }
     @Override
-    public List<Employee>getMin(int dep){
+    public Employee getMin(int dep){
     return employeeServiceImpl.getMap().values()
             .stream()
             .filter(employee -> employee.getDepartment() == dep)
-            .max(Comparator.comparingDouble(employeeServiceImpl-> employeeServiceImpl.getSalary()))
+            .min(Comparator.comparingDouble(employeeServiceImpl-> employeeServiceImpl.getSalary()))
             .orElseThrow(EmployeeNotFoundException::new);
 
 }
 
-    public List<Employee>getMax(int dep){
+    public Employee getMax(int dep){
         return employeeServiceImpl.getMap().values()
                 .stream()
                 .filter(employee -> employee.getDepartment() == dep)
-                .min(Comparator.comparingDouble(employeeServiceImpl-> employeeServiceImpl.getSalary()))
+                .max(Comparator.comparingDouble(employeeServiceImpl-> employeeServiceImpl.getSalary()))
                 .orElseThrow(EmployeeNotFoundException::new);
     }
 
-    public List<Employee>getSum(int dep){
-        return employeeServiceImpl.getMap().values()
-                .stream()
-                .filter(employee -> employee.getDepartment() == dep)
-                .collect(Collectors.toList());
-    }
 
     @Override
     public Map<Integer, List<Employee>> getAll() {
