@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.pro.sky.Homework_29.model.Employee;
 import ru.pro.sky.Homework_29.service.DepartmentService;
+import ru.pro.sky.Homework_29.service.DepartmentServiceImpl;
 
 import java.util.List;
 
@@ -27,31 +28,16 @@ public class DepartmentController {
 
     }
 
-    @GetMapping("/min")
-    public ResponseEntity<?> getMin(@RequestParam(required = false) Integer dep){
-        return dep == null ?
-                ResponseEntity.ok(service.getAll())
-                :
-                ResponseEntity.ok(service.getAllByDepartment(dep));
+    @GetMapping("/min-salary")
+    public Employee getMin(@RequestParam int dep){
+        return service.getMin(dep);
+    }
+
+    @GetMapping("/max-salary")
+    public Employee getMax(@RequestParam int dep){
+        return service.getMax(dep);
 
     }
 
-    @GetMapping("/max")
-    public ResponseEntity<?> getMax(@RequestParam(required = false) Integer dep){
-        return dep == null ?
-                ResponseEntity.ok(service.getAll())
-                :
-                ResponseEntity.ok(service.getAllByDepartment(dep));
-
-    }
-
-    @GetMapping("/sum")
-    public ResponseEntity<?> getSum(@RequestParam(required = false) Integer dep){
-        return dep == null ?
-                ResponseEntity.ok(service.getAll())
-                :
-                ResponseEntity.ok(service.getAllByDepartment(dep));
-
-    }
 
 }

@@ -7,9 +7,8 @@ import java.util.Map;
 
 public interface DepartmentService {
     public List<Employee> getAllByDepartment(int dep);
-    public List<Employee> getMin(int dep);
-    public List<Employee> getMax(int dep);
-    public List<Employee> getSum(int dep);
+    public Employee getMin(int dep);
+    public Employee getMax(int dep);
 
 
 
